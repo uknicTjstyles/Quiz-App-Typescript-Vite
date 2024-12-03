@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* From Uiverse.io by cuzpq */ 
+.theme-checkbox {
+    --toggle-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 4rem; /* Total width of the toggle */
+    height: 2rem; /* Total height of the toggle */
+    background: linear-gradient(to right, rgb(167, 41, 245) 50%, rgb(167, 41, 245) 50%) no-repeat;
+    background-size: 205%;
+    background-position: 0;
+    transition: 0.4s;
+    border-radius: 99em;
+    position: relative;
+    cursor: pointer;
+    font-size: var(--toggle-size);
+}
+
+.theme-checkbox::before {
+    content: "";
+    width: 1.2rem; /* Ball width */
+    height: 1.2rem; /* Ball height */
+    position: absolute;
+    top: 0.438em; /* Center the ball vertically */
+    left: 0.438em; /* Initial position */
+    background: linear-gradient(to right, #efefef 50%, #fff 50%) no-repeat;
+    background-size: 205%;
+    background-position: 100%;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+    left: calc(100% - 1.2rem - 0.438rem); /* Ball moves to the right */
+    background-position: 0;
+}
+
+.theme-checkbox:checked {
+    background-position: 100%; /* Background gradient moves */
+}
+
+html, body {
+    height: 100%;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Light theme */
+body {
+    background-image: url('../../../public/pattern-background-desktop-light.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+  
+  /* Dark theme */
+  body.dark {
+    background-color: #303f56;
+    background-image: url('../../../public/pattern-background-desktop-dark.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .selected{
+    border: .3rem solid rgb(167,41,245);
+  }
+  
