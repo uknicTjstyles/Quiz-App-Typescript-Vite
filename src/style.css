@@ -68,3 +68,32 @@ body {
     border: .3rem solid rgb(167,41,245);
   }
   
+/* 
+  const themeCheckbox = container.querySelector(".theme-checkbox") as HTMLInputElement;
+  themeCheckbox?.addEventListener("change", (e) => {
+    const isChecked = (e.target as HTMLInputElement).checked;
+    localStorage.setItem("theme", isChecked ? "dark" : "light");
+    document.body.classList.toggle("dark", isChecked);
+  }); */
+
+  /* 
+   <div class="w-full flex flex-col space-y-[2rem] md:space-y-[20rem] md:w-[50%] text-[2rem] md:text-[2.8rem] p-[.5rem]">
+          <div id="questionDisplay" class="w-full"></div>
+          <div class="w-full bg-[rgb(59,77,102)] rounded-lg h-[.8rem]">
+            <div id="loader" class="h-full rounded-lg w-0 bg-[rgb(167,41,245)]"></div>
+          </div>
+        </div>
+        <div id="quizContainer" class="w-full flex flex-col space-y-[1rem]"></div>
+  
+  
+  */
+
+  /* 
+  
+    <div class="w-full mt-[3rem] flex justify-center">
+        <button id="submit_btn" class="py-[1rem] px-[4rem] rounded-xl bg-[rgb(167,41,245)] text-white text-[1.4rem] font-medium md:text-[2rem]">
+          Submit Answer
+        </button>
+      </div>
+  
+  */
