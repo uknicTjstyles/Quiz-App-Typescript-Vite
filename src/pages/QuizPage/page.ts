@@ -1,4 +1,5 @@
 import { questions } from "../../../data/questions"; // Import questions data
+import { navigateTo } from "../../main";
 
 // QuizPage Component
 export function QuizPage(
@@ -99,19 +100,58 @@ export function QuizPage(
     }
   };
 
+  const redirectToHomepage = ()=>{
+    navigateTo('/');
+  }
+
+
+
   // Function to handle quiz completion
   const handleQuizComplete = () => {
-    container.innerHTML = `
-      <h1 class="text-center font-bold text-2xl">Quiz Complete!</h1>
-      <p class="text-center text-xl">You scored ${score} out of ${quizQuestions.length}.</p>
-      <button class="bg-blue-500 text-white p-4 rounded-lg mt-4" id="retry_btn">Retry</button>
-    `;
+ 
+    const questionContainerAbover = document.getElementById('questionContainerAbove') as HTMLDivElement;
+    questionContainerAbover.innerHTML=`
 
-    const retryButton = document.getElementById("retry_btn") as HTMLButtonElement;
-    retryButton.addEventListener("click", () => {
+       <div class="w-full flex flex-col  md:w-[48%] text-[2rem] md:text-[3.8rem] p-[.9rem] py-[2rem] space-y-[3rem]  md:space-y-[18rem]">
+       Quiz completed <span class="font-bolder">You scored...</span>
+       
+       </div>
+
+     <div class="w-full flex flex-col space-y-[2rem] md:w-[50%] text-[2rem] md:text-[2.8rem] p-[.9rem] py-[2rem]">
+     
+      <div class="w-full flex flex-col dark:bg-[rgb(59,77,102)] rounded-xl text-center p-[3rem] space-y-[4rem]">
+      
+      <div class="w-full flex space-x-[2rem] justify-center" >
+               <img src="${changeNavbarPicture(topic)}"  class="w-[2.5rem] " />
+          <h1 class="text-[2.1rem] dark:text-white font-bolder">${topic.toUpperCase()}</h1>
+      
+      </div>
+
+      <h1 class="text-[4rem] font-bold">${score}</h1>
+
+      <p class="dark:text-[rgb(94,105,125)] text-[1.6rem]">out of ${quizQuestions.length}</p>
+      
+      </div>
+
+      <button id="redirect_btn" class="btn bg-[rgb(167,41,245)] text-white p-[.9rem] py-[1rem] rounded-lg w-full font-bold text-[1.5rem]">
+      
+        Play Again
+      </button>
+
+
+     
+     </div>
+
+    
+    
+    `
+
+    const submitButton = document.getElementById("redirect_btn") as HTMLButtonElement;
+    submitButton.addEventListener("click", () => {
       currentIndex = 0;
       score = 0;
-      displayQuestion();
+      navigateTo('/');
+      // displayQuestion();
     });
   };
 
@@ -182,7 +222,7 @@ export function QuizPage(
   container.innerHTML = `
     <div class="flex flex-wrap px-[2rem] py-[1rem] md:py-[0rem] md:px-[7rem] bg-no-repeat bg-cover">
       <nav class="w-full flex justify-between py-[2rem] md:py-[4.5rem]">
-        <aside class="flex items-center font-medium space-x-[1rem]">
+        <aside class="flex items-center font-medium space-x-[1rem] cursor-pointer" id="logo_Div">
           <img src="${changeNavbarPicture(topic)}" class="w-[2.5rem]" />
           <h1 class="text-[1.6rem] dark:text-white">${topic.toUpperCase()}</h1>
         </aside>
@@ -192,8 +232,8 @@ export function QuizPage(
           <img src="https://res.cloudinary.com/dei2yklhq/image/upload/v1733316035/icon-moon-dark_s42rc5.svg" class="w-[1.7rem]" />
         </aside>
       </nav> 
-      <div class="w-full flex flex-col md:flex-row dark:text-white md:space-x-[5rem]">
-        <div class="w-full flex flex-col space-y-[2rem] md:w-[45%] text-[2rem] md:text-[2.8rem] p-[.9rem] py-[2rem] space-y-[3rem]  md:space-y-[18rem]">
+      <div class="w-full flex flex-col md:flex-row dark:text-white md:space-x-[5rem]" id="questionContainerAbove">
+        <div class="w-full flex flex-col  md:w-[45%] text-[2rem] md:text-[2.8rem] p-[.9rem] py-[2rem] space-y-[3rem]  md:space-y-[18rem]">
           <div id="questionDisplay" class="w-full space-y-[1rem]"></div>
           <div class="w-full bg-[rgb(59,77,102)] rounded-lg h-[.8rem] my-[2rem]">
             <div id="loader" class="h-full rounded-lg w-0 bg-[rgb(167,41,245)]"></div>
@@ -218,6 +258,14 @@ export function QuizPage(
 
   // Start the quiz by displaying the first question
   displayQuestion();
+
+  // Add the event listener after rendering the HTML
+const logo_Div = container.querySelector('#logo_Div') as HTMLDivElement;
+if (logo_Div) {
+  logo_Div.addEventListener('click', redirectToHomepage);
+} else {
+  // console.error('logo_Div not found');
+}
 
   // Theme toggle logic
   const themeCheckbox = document.querySelector(

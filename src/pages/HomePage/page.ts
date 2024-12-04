@@ -2,18 +2,14 @@
 import { navigateTo } from "../../main";
 
 export function HomePage(container: HTMLDivElement) {
+  const redirectToHomepage = () => {
+    navigateTo("/");
+  };
 
-
-
-    
-
-
-
-  
   container.innerHTML = `
     <div class="flex flex-wrap px-[2rem] py-[1rem] md:py-[0rem]  md:px-[7rem]  bg-no-repeat bg-cover ">
-        <nav class="w-full flex justify-between py-[4rem]">
-            <aside class="flex items-center font-medium space-x-[1rem]">
+        <nav class="w-full flex justify-between py-[2rem]">
+            <aside id="logo_Div" class="flex items-center font-medium space-x-[1rem]">
                 <img src="https://res.cloudinary.com/dei2yklhq/image/upload/v1733316035/icon-html_pr2o5b.svg" class="w-[2.5rem]" />
                 <h1 class="text-[1.6rem] dark:text-white">HTML</h1>
             </aside>
@@ -74,10 +70,18 @@ export function HomePage(container: HTMLDivElement) {
     </div>
   `;
 
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
 
+  const logo_Div = container.querySelector("#logo_Div") as HTMLDivElement;
+  if (logo_Div) {
+    logo_Div.addEventListener("click", redirectToHomepage);
+  } else {
+    // console.error("logo_Div not found");
+  }
 
-  const themeCheckbox = container.querySelector(".theme-checkbox") as HTMLInputElement;
+  const themeCheckbox = container.querySelector(
+    ".theme-checkbox"
+  ) as HTMLInputElement;
   const bodyElement = document.body;
 
   // Check for saved preference in localStorage before rendering content
@@ -87,7 +91,6 @@ export function HomePage(container: HTMLDivElement) {
   } else {
     bodyElement.classList.remove("dark");
   }
-
 
   themeCheckbox.addEventListener("change", () => {
     if (themeCheckbox.checked) {
@@ -100,7 +103,6 @@ export function HomePage(container: HTMLDivElement) {
       themeCheckbox.setAttribute("aria-checked", "false");
     }
   });
-  
 
   // Add click event listeners to each topic
   const topics = container.querySelectorAll(".topic");
