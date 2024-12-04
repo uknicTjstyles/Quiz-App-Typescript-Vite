@@ -52,7 +52,7 @@ html, body {
 
 /* Light theme */
 body {
-    background-image: url('../../../public/pattern-background-desktop-light.svg');
+    background-image: url('https://res.cloudinary.com/dei2yklhq/image/upload/v1733316037/pattern-background-desktop-light_bw4vnv.svg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -60,7 +60,7 @@ body {
   /* Dark theme */
   body.dark {
     background-color: #303f56;
-    background-image: url('../../../public/pattern-background-desktop-dark.svg');
+    background-image: url('https://res.cloudinary.com/dei2yklhq/image/upload/v1733316037/pattern-background-desktop-dark_jwkazr.svg');
     background-repeat: no-repeat;
     background-size: cover;
   }
